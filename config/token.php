@@ -11,7 +11,7 @@ class Token{
         session_start();
         define("STR_MD","23nbhjfdb#%#^A!~");
         $sql="select*from card";
-        $sqli=new mysqli("localhost","root","faery.666.233","weixin");;
+        $sqli=new mysqli("Your IP","Your UserName","Your Password","database");;
         $result=$sqli->query($sql);
         while($row=$result->fetch_array()){
             $token=md5($row['media_id'].$row['title'].$row['from_openid'].$row['to_openid'].STR_MD.time());
