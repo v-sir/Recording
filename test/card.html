@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript">
+        var $_GET = (function(){
+            var url = window.document.location.href.toString();
+            var u = url.split("?");
+            if(typeof(u[1]) == "string"){
+                u = u[1].split("&");
+                var get = {};
+                for(var i in u){
+                    var j = u[i].split("=");
+                    get[j[0]] = j[1];
+                }
+                return get;
+            } else {
+                return {};
+            }
+        })();
+        $.ajax({
+            type: "POST",//请求方式
+            url: "http://weixin.faeries-land.com/card/ask_cardinfo.php?ask_method=json&media_id="+$_GET['media_id'],//地址，就是action请求路径
+            dataType: 'json',
+
+            success: function(data){
+
+
+                document.getElementById('msg').innerHTML=data.msg;
+                document.getElementById('data').innerHTML='<img src="'+data.data.code_url+'"  />';
+                document.getElementById('code_url').innerHTML=data.data.code_url;
+
+
+
+
+
+
+            }
+        });
+
+    </script>
+
+<body>
+<div id="msg"></div>
+<div id="data"></div>
+<div id="code_url"></div>
+</body>
+</html>

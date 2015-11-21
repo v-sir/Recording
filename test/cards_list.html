@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript">
+        $.ajax({
+            type: "POST",
+            url: "http://weixin.faeries-land.com/card/cards_list.php?ask_method=json",
+            dataType: 'json',
+
+            success: function(data){
+
+
+
+                document.getElementById('list').innerHTML='<a href="'+data.data.code_url+'">'+'我的卡片列表'+'</a>';
+                document.getElementById('cs').innerHTML=data.data.code_url;
+
+
+
+
+
+
+
+            }
+        });
+    </script>
+</head>
+<body>
+<div id="list"></div>
+<div id="cs"></div>
+</body>
+</html>

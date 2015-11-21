@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript">
+        var $_GET = (function(){
+            var url = window.document.location.href.toString();
+            var u = url.split("?");
+            if(typeof(u[1]) == "string"){
+                u = u[1].split("&");
+                var get = {};
+                for(var i in u){
+                    var j = u[i].split("=");
+                    get[j[0]] = j[1];
+                }
+                return get;
+            } else {
+                return {};
+            }
+        })();
+        $.ajax({
+            type: "POST",
+            url: "http://weixin.faeries-land.com/card/player.php?media_id=1&ask_method=json&Token="+$_GET['Token'],
+            dataType: 'json',
+
+            success: function(data){
+
+
+
+                document.getElementById('audio_player').innerHTML='<source src="'+data.data.media_url+'"  />';
+
+
+
+
+
+
+
+            }
+        });
+
+    </script>
+
+    <title></title>
+</head>
+<body>
+<div style="margin-left:40px;">
+    <audio  controls="controls" id="audio_player">
+        <!---<source src="http://weixin.faeries-land.com/uploadfile/1.mp3" >-->
+    </audio>
+</div>
+
+</body>
+</html>
